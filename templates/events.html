@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Upcoming Events</h2>
+<div class="row">
+    {% for event in current_events %}
+        <div class="col-md-4 mb-4">
+            <img src="{{ url_for('static', filename='uploads/' + event.poster_filename) }}" class="img-fluid rounded shadow">
+            <h5>{{ event.title }}</h5>
+            <p><strong>{{ event.category }}</strong></p>
+            <p>{{ event.start_date }} to {{ event.end_date }}</p>
+            <p>{{ event.description }}</p>
+        </div>
+    {% else %}
+        <p>No upcoming events.</p>
+    {% endfor %}
+</div>
+
+<hr>
+
+<h2>Archived Events</h2>
+<div class="row">
+    {% for event in archived_events %}
+        <div class="col-md-4 mb-4">
+            <img src="{{ url_for('static', filename='uploads/' + event.poster_filename) }}" class="img-fluid rounded shadow">
+            <h5>{{ event.title }}</h5>
+            <p><strong>{{ event.category }}</strong></p>
+            <p>{{ event.start_date }} to {{ event.end_date }}</p>
+            <p>{{ event.description }}</p>
+        </div>
+    {% else %}
+        <p>No archived events.</p>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center">
+    <img src="{{ url_for('static', filename='images/.png') }}" alt="Harvest Assemblies Logo" class="img-fluid mb-4" style="max-width: 200px;">
+    <h2  class="display-5"><strong>Welcome to Harvest Assemblies of Christ Global Church</strong></h2>
+    <p class="lead">Join us every Sunday for worship and fellowship.</p>
+    <img src="{{ url_for('static', filename='images/church.jpg') }}" class="img-fluid rounded" alt="Church building">
+        <section class="mt-5">
+        <div class="card bg-dark text-light shadow-lg">
+            <div class="card-body">
+            <h2 class="card-title text-center mb-4">Our Story</h2>
+            <p class="lead">
+                Harvest Assemblies of Christ Global Church was founded in 2008 in the heart of Phase 5, a vibrant community seeking spiritual renewal and purpose. Under the divine calling and leadership of <strong>Apostle Malesela</strong>, the church began as a humble gathering of believers in a small hall, united by faith, prayer, and a vision for transformation.
+            </p>
+            <p>
+                From its earliest days, the church has been a beacon of hope — preaching the gospel, nurturing families, and empowering youth through outreach, worship, and discipleship. What started with just a handful of passionate souls has grown into a thriving global ministry, touching lives across South Africa and beyond.
+            </p>
+            <p>
+                Over the years, Harvest Assemblies has launched dynamic ministries including the <em>Harvest Youth Fire</em>, <em>Women of Grace</em>, and <em>Kingdom Builders Men's Fellowship</em>. Our annual conferences, healing crusades, and community upliftment programs have become pillars of impact and inspiration.
+            </p>
+            <p>
+                Today, we continue to walk boldly in our calling — raising leaders, restoring families, and reaching nations. Our foundation is Christ, our mission is harvest, and our future is filled with glory.
+            </p>
+            <p class="text-center mt-4">
+                <strong>"The harvest is plentiful, but the laborers are few." — Matthew 9:37</strong>
+            </p>
+            </div>
+        </div>
+        </section>
+
+</div>
+{% endblock %}
+ 

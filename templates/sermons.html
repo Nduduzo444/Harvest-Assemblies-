@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Recent Sermons</h2>
+<div class="row">
+    {% for sermon in sermons %}
+        <div class="col-md-6 mb-4">
+            <h5 class="text-light">{{ sermon }}</h5>
+
+            {% if sermon.endswith('.mp4') or sermon.endswith('.webm') %}
+                <video controls width="100%" class="mb-2">
+                    <source src="{{ url_for('static', filename='uploads/sermons/' + sermon) }}">
+                </video>
+            {% elif sermon.endswith('.mp3') or sermon.endswith('.wav') %}
+                <audio controls class="mb-2">
+                    <source src="{{ url_for('static', filename='uploads/sermons/' + sermon) }}">
+                </audio>
+            {% else %}
+                <p><a href="{{ url_for('static', filename='uploads/sermons/' + sermon) }}" target="_blank" class="btn btn-outline-light btn-sm">View Sermon</a></p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p class="text-light">No sermons uploaded yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

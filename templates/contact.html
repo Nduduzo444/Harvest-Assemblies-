@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Contact Us</h2>
+
+<form action="/contact" method="POST" class="row g-3">
+    <!-- Name, Email, Subject, Message -->
+    <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" required>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" required>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Subject</label>
+        <input type="text" class="form-control" name="subject" required>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Urgency</label>
+        <select name="urgency" class="form-control" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" name="message" rows="4" required></textarea>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" onclick="alert('Message sent successfully!')">Send</button>
+    </div>
+</form>
+
+{% endblock %}

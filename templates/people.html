@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center mb-4">Meet Our Leaders</h2>
+<div class="row">
+    {% for leader in leaders %}
+        <div class="col-md-6 mb-4">
+            <div class="card bg-dark text-light shadow-lg">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ url_for('static', filename='images/people/' + leader.image_filename) }}" class="img-fluid rounded-start" alt="{{ leader.name }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ leader.name }}</h5>
+                            <p class="card-text"><strong>Position:</strong> {{ leader.position }}</p>
+                            <p class="card-text"><em>"{{ leader.motto }}"</em></p>
+                            <p class="card-text"><strong>Phone:</strong> {{ leader.phone }}</p>
+                            <p class="card-text"><strong>Email:</strong> <a href="mailto:{{ leader.email }}" class="text-light">{{ leader.email }}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-light">No leaders uploaded yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

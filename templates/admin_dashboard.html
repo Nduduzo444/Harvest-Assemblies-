@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<h3 class="mt-5">📨 Contact Messages</h3>
+<div class="card bg-dark text-light mb-4">
+    <div class="card-body">
+        {% if messages %}
+            <ul class="list-group list-group-flush">
+                {% for msg in messages %}
+                    <li class="list-group-item bg-dark text-light">
+                        <strong>{{ msg.name }}</strong> (<a href="mailto:{{ msg.email }}" class="text-light">{{ msg.email }}</a>)<br>
+                        <em>{{ msg.subject }}</em> | <span class="badge bg-warning text-dark">{{ msg.urgency }}</span><br>
+                        <p>{{ msg.content }}</p>
+                        <small class="text-muted">{{ msg.timestamp.strftime('%Y-%m-%d %H:%M') }}</small><br>
+                        <form action="{{ url_for('delete_message', message_id=msg.id) }}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                        <form action="{{ url_for('archive_message', message_id=msg.id) }}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-secondary">Archive</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No messages received yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+
+<h3 class="mt-4">Upload Sermons and Events</h3>
+
+<!-- Upload Sermon Form -->
+<form action="/upload_sermon" method="POST" enctype="multipart/form-data" class="mb-4">
+    <label>Sermon Title:</label>
+    <input type="text" name="title" class="form-control mb-2" required>
+    <label>Upload Sermon (video/audio/text):</label>
+    <input type="file" name="sermon_file" class="form-control mb-2" required>
+    <button type="submit" class="btn btn-primary">Upload Sermon</button>
+</form>
+
+<!-- Upload Event Form -->
+<form action="/upload_event" method="POST" enctype="multipart/form-data" class="mb-4">
+    <label>Event Title:</label>
+    <input type="text" name="event_title" class="form-control mb-2" required>
+
+    <label>Description:</label>
+    <textarea name="description" class="form-control mb-2" rows="3" required></textarea>
+
+    <label>Category:</label>
+    <select name="category" class="form-control mb-2" required>
+        <option value="Sunday Service">Sunday Service</option>
+        <option value="Youth">Youth</option>
+        <option value="Outreach">Outreach</option>
+        <option value="Conference">Conference</option>
+    </select>
+
+    <label>Start Date:</label>
+    <input type="date" name="start_date" class="form-control mb-2" required>
+
+    <label>End Date:</label>
+    <input type="date" name="end_date" class="form-control mb-2" required>
+
+    <label>Upload Poster:</label>
+    <input type="file" name="poster" class="form-control mb-2" required>
+
+    <button type="submit" class="btn btn-success">Upload Event</button>
+</form>
+
+<hr>
+
+<h3 class="mt-5">Upload Church Leader</h3>
+<form action="/upload_leader" method="POST" enctype="multipart/form-data" class="mb-4">
+    <input type="text" name="name" class="form-control mb-2" placeholder="Full Name" required>
+    <input type="text" name="position" class="form-control mb-2" placeholder="Position" required>
+    <input type="text" name="motto" class="form-control mb-2" placeholder="Motto" required>
+    <input type="text" name="phone" class="form-control mb-2" placeholder="Phone Number" required>
+    <input type="email" name="email" class="form-control mb-2" placeholder="Email Address" required>
+    <label>Upload Image:</label>
+    <input type="file" name="image" class="form-control mb-2" required>
+    <button type="submit" class="btn btn-info">Upload Leader</button>
+</form>
+
+<h4 class="mt-4">Current Leaders</h4>
+<div class="row">
+    {% for leader in leaders %}
+        <div class="col-md-6 mb-4">
+            <div class="card bg-dark text-light shadow">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ url_for('static', filename='images/people/' + leader.image_filename) }}" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5>{{ leader.name }}</h5>
+                            <p><strong>{{ leader.position }}</strong></p>
+                            <p><em>"{{ leader.motto }}"</em></p>
+                            <p>{{ leader.phone }} | <a href="mailto:{{ leader.email }}" class="text-light">{{ leader.email }}</a></p>
+                            <form action="{{ url_for('delete_leader', leader_id=leader.id) }}" method="POST">
+                                <button type="submit" class="btn btn-sm btn-danger mt-2">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Sermon Previews -->
+<h3>Uploaded Sermons</h3>
+{% for filename in sermons %}
+    <div class="mb-3">
+        {% if filename.endswith('.mp4') or filename.endswith('.webm') %}
+            <video controls width="300">
+                <source src="{{ url_for('static', filename='uploads/sermons/' + filename) }}">
+            </video>
+        {% elif filename.endswith('.mp3') or filename.endswith('.wav') %}
+            <audio controls>
+                <source src="{{ url_for('static', filename='uploads/sermons/' + filename) }}">
+            </audio>
+        {% else %}
+            <p><a href="{{ url_for('static', filename='uploads/sermons/' + filename) }}" target="_blank">{{ filename }}</a></p>
+        {% endif %}
+        <form action="{{ url_for('delete_sermon', filename=filename) }}" method="POST">
+            <button type="submit" class="btn btn-sm btn-danger mt-2">Delete</button>
+        </form>
+    </div>
+{% else %}
+    <p>No sermons uploaded yet.</p>
+{% endfor %}
+
+<!-- Poster Previews -->
+<h3>Uploaded Event Posters</h3>
+<div class="row">
+    {% for filename in posters %}
+        {% if filename.endswith('.jpg') or filename.endswith('.png') or filename.endswith('.jpeg') %}
+            <div class="col-md-3 mb-3">
+                <img src="{{ url_for('static', filename='uploads/posters/' + filename) }}" class="img-fluid rounded">
+                <form action="{{ url_for('delete_poster', filename=filename) }}" method="POST">
+                    <button type="submit" class="btn btn-sm btn-danger mt-2">Delete</button>
+                </form>
+            </div>
+        {% endif %}
+    {% else %}
+        <p>No event posters uploaded yet.</p>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}
