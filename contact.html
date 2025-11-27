@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Harvest Church</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Shared custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-dark text-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/harvest_logo.png" alt="Church Logo" style="height: 50px;" class="me-2">
+        <span>Harvest Assemblies of Christ Global Church</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="sermons.html">Sermons</a></li>
+          <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="people.html">Leaders</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container py-5">
+    <h2 class="mb-4">Contact Us</h2>
+
+    <form class="row g-3">
+      <!-- Name, Email, Subject, Message -->
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" required>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Subject</label>
+        <input type="text" class="form-control" name="subject" required>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Urgency</label>
+        <select name="urgency" class="form-control" required>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" name="message" rows="4" required></textarea>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" onclick="alert('Message sent successfully!')">Send</button>
+      </div>
+    </form>
+
+    <!-- Location -->
+    <h4 class="mt-5">📍 Our Location</h4>
+    <div class="ratio ratio-16x9 mb-4">
+      <iframe
+        src="https://www.google.com/maps?q=15845+Lengana+St,+Palmridge,+Katlehong,+Gauteng,+South+Africa&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-light text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 Harvest Assemblies of Christ Global Church. All Rights Reserved.</p>
+      <p class="mb-2">📍 15845 Lengana Street, Palmridge, Katlehong, Gauteng</p>
+      <div>
+        <a href="https://facebook.com" target="_blank" class="text-light me-3">
+          <i class="bi bi-facebook"></i> Facebook
+        </a>
+        <a href="https://instagram.com" target="_blank" class="text-light me-3">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a href="https://youtube.com" target="_blank" class="text-light">
+          <i class="bi bi-youtube"></i> YouTube
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
