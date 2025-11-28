@@ -1,35 +1,38 @@
-# Harvest Assemblies of Christ Global Church Website
+# Harvest Assemblies of Christ Global Church Website (Dynamic Version)
 
-A static website built to celebrate the legacy, mission, and community of **Harvest Assemblies of Christ Global Church**.  
-This site provides information about the church, its leadership, sermons, events, and a photo gallery of memorable moments.
+This is the **dynamic web application** for Harvest Assemblies of Christ Global Church, built with **Flask** and **Jinja2 templates**.  
+It provides a structured, maintainable platform for sermons, events, leadership profiles, and contact forms, powered by Python on the backend.
 
 ---
 
 ## ✨ Features
 
-- **Responsive Navbar & Sticky Footer**  
-  Unified navigation across all pages with a footer that stays pinned at the bottom.
+- **Dynamic Templates**  
+  Pages extend from a shared `base.html` layout using Jinja2 blocks.
+
+- **Navbar & Footer**  
+  Unified navigation and sticky footer included in `base.html`.
 
 - **Home Page**  
-  Welcome message, mission & vision, quick links, and a preview of church photos with a "See More" option.
+  Welcome message, mission, vision, and quick links.
 
 - **About Page**  
-  History, mission, vision, and core values of the church, including a Google Maps embed for location.
+  Church history, mission, vision, and values with Google Maps embed.
 
 - **Sermons Page**  
-  Section for recent sermons and teachings.
+  Dynamic section for recent sermons.
 
 - **Events Page**  
-  Upcoming events with images and descriptions.
+  Dynamic listing of upcoming events.
 
 - **Leaders Page**  
-  Profiles of Apostle Malesela and other leaders.
+  Profiles of Apostle Malesela and leadership team.
 
 - **Contact Page**  
-  Contact form (static, with alert confirmation) and location map.
+  Contact form with POST handling (name, email, subject, urgency, message).
 
-- **Gallery Page**  
-  Interactive photo gallery with **Lightbox effect** for viewing event and moment pictures.
+- **Admin Pages**  
+  Login and dashboard routes for administrative use.
 
 ---
 
@@ -41,38 +44,17 @@ This site provides information about the church, its leadership, sermons, events
 ## 🚀 Getting Started
 
 ### Prerequisites
-- [Visual Studio Code](https://code.visualstudio.com/) or any text editor
-- A modern browser (Chrome, Edge, Firefox, Safari)
+- Python 3.9+  
+- pip (Python package manager)  
+- Virtual environment recommended
 
-### Running Locally
-1. Clone or download this repository.
-2. Open the project folder in **VS Code**.
-3. Install the **Live Server** extension (recommended).
-4. Right-click `index.html` → **Open with Live Server**.
-5. Navigate through the site using the navbar.
-
----
-
-## 🎨 Customization
-
-- Update `css/style.css` to change colors, fonts, or layout.
-- Replace images in the `images/` folder with your own.
-- Add new events, sermons, or leaders by duplicating card components in their respective pages.
-- Expand the gallery by adding more `<div class="col-md-4">...</div>` blocks in `gallery.html`.
-
----
-
-## 📸 Credits
-
-- Built with **Bootstrap 5** for responsive design.
-- Lightbox powered by [Lightbox2](https://lokeshdhakar.com/projects/lightbox2/).
-- Content curated for **Harvest Assemblies of Christ Global Church**.
-
----
-
-## 📜 License
-
-This project is for **community and organizational use**.  
-Feel free to adapt and expand it for your church or faith-based organization.
-﻿# Harvest-Assemblies-Website
-
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/harvest-church-dynamic.git
+   cd harvest-church-dynamic
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
+pip install -r requirements.txt
+python app.py
